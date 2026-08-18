@@ -1,0 +1,25 @@
+\documentclass[../../main]{subfiles}
+\ifSubfilesClassLoaded{
+    \setcounter{chapter}{1} } % chapter 2 - 1
+    {}
+
+\begin{document}
+\chapter{Chapter 2}\label{chap:cap2}
+I AM CHAPTER TW. BEHOLD MY POWER. \todo{Se this side note} Do you like it?
+This is a sample text.\todo[color=yellow]{Check this sentence later.} More text here.
+Let's reference to chapter \ref{M-chap:cap1}, then \ref{chap:cap2} and \ref{M-chap:cap3}.
+
+Now let's add some picture
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics{\subfix{psiR.pdf}}
+        \caption{This is a beautiful picture}
+        \label{fig:some_picture}
+    \end{center}
+\end{figure}
+
+\ifSubfilesClassLoaded{%
+    \printbibliography
+}{}
+
+\end{document}

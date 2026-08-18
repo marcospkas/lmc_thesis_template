@@ -1,0 +1,193 @@
+\documentclass[language=english,debug=true,a4paper,twoside,12pt]{lmc}
+% Options: same options as standard book class
+%and two new keyval options:
+% - boolean debug, that shows/hide pageframe, line number and
+% custom pages with debug info at the end of the document  (Try it!)
+% - language, to apply to babel package. We support correctly 
+% english and portuguese
+
+% Compilation:
+% I recomend using Miktex as the compiler and VSCode + Latex Workshop 
+% extension and the IDE. To compile this template within the suggested
+% framework, just go to the command, palette (ctrl+shift+p), search for Latex Workshop: Build with recipe, and use the recipe PDFLatex + Biber + PDFLatex*2
+% If you are using other IDEs, you will have to search how to use Biber there, 
+% since ABNT-style citation needs it instead of Bibtex.
+% I haven't tried it in Overleaf yet.
+
+% Useful tips:
+%   Using subfile package, you can compile either individual subfiles or the 
+% whole main document.
+%   This template is capable of bidirectional navigation (see synctex=1 in
+% class definition).
+%   In vscode, ctrl+click on PDF to go to source code and select text in source
+% code and press ctrl+alt+j to go to PDF.
+%   Note that the subfiles will map to the PDF created when compiling the 
+% subfile only.
+
+% REMARK: For figures and tables add label after caption. Note that if caption is positioned above the figure/table, the caption is positioned above
+
+% If you want to automatically use ABNT citations, you MUST use biblatex with biber backend. You can change those configurations as you wish.
+\usepackage[style=abnt-numeric,backend=biber,citecounter=true,backrefstyle=three]{biblatex}
+\usepackage{csquotes}
+%Adds a period and boldface the reference number ONLY WHEN IN REFERENCE LIST, for style=abnt-numeric
+\DeclareFieldFormat{labelnumber}{\ifbibliography{\mkbibbold{#1\addperiod}}{#1}}
+
+% Adds the .bib sources
+\addbibresource{\subfix{custom_bibliography.bib}}
+
+% Use subfiles + xr-hyper (loaded by class) to get correct correspondences!
+% I recomend adding M- to all \refs, \crefs, etc, to guarantee correct hyperrefs. Also, you will need to compile the whole main at least onece before making it work correctly
+\externaldocument[M-]{\subfix{main}}
+
+\input{\subfix{macros.tex}}
+
+% In this template, all the commands that are introduced
+% in this custom class are used for the cover and titlepage.
+% PLEASE FILL ALL THE METADATA BELOW
+\author{My Name}
+\title{My book}
+\City{My city}
+\date{\the\year}
+\Docversion{Original Version}
+\Advisor{My advisor}  
+\ConcentrationArea{My concentration area}
+\School{Polytechnic School of the University of São Paulo}
+\Department{Department of Structural and Geotechnical Engineering}
+\TitlePageText{Thesis submitted to the \theSchool{}, to obtain 
+                the degree of Doctor of Science in the Postgraduate Program in Civil Engineering.\par
+                Concentration area:\par
+                \textit{\theConcentrationArea{}}\par
+                Advisor: \par \textit{\theAdvisor}}
+
+\begin{document}
+%    
+%%============= pre-textual content =================
+
+%modify locally the plain pagestyle, so that it
+%gets used in the TOC, TOL and TOF correctly
+%========= COVER AND TITLE PAGE ===================
+% CAPA
+\cover 
+% FOLHA DE ROSTO + ficha catalográfica, if available
+\TitlePage{}
+% OR
+%\TitlePage{ficha_catalografica.pdf}
+
+%===== EVALUATION SHEET ========
+%\includepdf{my_evaluation_sheet.pdf} evaluation sheet
+
+
+%========= DEDICATION ===================
+\renewcommand{\abstractname}{Dedication}
+\begin{abstract}
+    You can \verb!\renewcommand! in \verb!\abstractname! to create unnumbered environements for the pretextual elements!
+\end{abstract}
+
+%========= ACKNOWLEDGEMENTS ===================
+\renewcommand{\abstractname}{Acknowledgements}
+\begin{abstract}
+    Acknowledgements ....
+\end{abstract}
+
+%================ EPIGRAPH ====================
+\cleardoublepage
+
+\vspace*{\fill}
+\epigraph{
+    "(...) \textit{some fancy text} (...)"
+    \vspace{6pt}\\
+    "(...) \textit{algum texto legal} (...)" 
+    \vspace{6pt}
+}{--- \textit{An important guy}, somehwere, someday.}
+\vspace*{\fill}
+
+%========= RESUMO [PT-BR] ===================
+\renewcommand{\abstractname}{Resumo}
+\begin{abstract}
+    
+    %\include{abstract.tex}
+    Insira resumo aqui...
+    %
+    \\[3\baselineskip]
+    %
+    \textbf{Palavras-chave} -- Word, Word, Word, Word, Word.
+\end{abstract}
+
+%========= Abstract [English] ===================
+
+\renewcommand{\abstractname}{Abstract}
+\begin{abstract}
+    %\include{abstract.tex}
+    Insert abstract here...
+    %
+    \\[3\baselineskip]
+    %
+    \textbf{Keywords} -- Word, Word, Word, Word, Word. 
+\end{abstract}
+
+% === Tables of contents, figures and tables ===
+\tableofcontents
+\listoffigures
+\listoftables
+
+% ========== BEGIN OF TEXTUAL CONTENT ===================
+% You can add subfiles with the actual content!
+\subfile{chapters/chapter_one/chapter1.tex}
+\subfile{chapters/chapter_two/chapter2.tex}
+\subfile{chapters/chapter_three/chapter3.tex}
+
+% Or just do regular latex commands!
+\chapter{My fourth chapter}
+\lipsum[9-9]
+\chapter{My fifth chapter}
+\lipsum[9]
+\section{First section of fifth chapter}
+\subsection{First subsection of first section of fifth chapter}
+\subsubsection{First subsubsection of first subsection of first section of fifth chapter}
+\lipsum[15]
+\section{Second section of second chapter}
+\lipsum[15]
+See \cite{timoshenko_theory_1985}
+\begin{equation}
+    a = b + c
+    \label{eq:sum}
+\end{equation}
+\lipsum[3-20]
+\chapter{My sixth chapter}
+\lipsum[9]
+
+
+%===============================BIBLOGRAPHY===============================
+
+\cleardoublepage %ends the current page and causes all figures and tables that have so far appeared in the input to be printed. 
+\printbibliography
+
+%=================================APPENDIX=================================
+\appendix
+\chapter{First appendix}
+\section{Section inside appendix}
+\subsection{Sub Section inside appendix}
+\subsubsection{Sub Sub Section inside appendix}
+\chapter{Second appendix with a very a very a very a very a very a very a very a very long title}
+
+\lipsum[9]
+
+%==================================ANNEX===================================
+\annex
+\chapter{First annex}
+\section{Section inside annex}
+\subsection{Sub Section inside annex}
+\subsubsection{Sub Sub Section inside annex}
+\begin{equation}
+    a = b^2 + c^2
+\end{equation}
+\chapter{Second annex}
+
+
+\DEBUG{
+\chapter{This is a DEBUG chapter}
+This is only shown if debug = true
+}
+
+
+\end{document}

@@ -1,0 +1,33 @@
+# Blocks all in main directory
+/*
+# except vscode configuration
+!.vscode/
+# except tex files, .gitignore, 
+# bibliography and files that are included in main
+!*.gitignore
+!lmc.cls
+
+# Main file and auxiliaries
+!*.tex
+!*.bib
+!ficha_catalografica.pdf
+
+# include tex chapter files and its dependencies, remove auxiliary files
+!/chapters/
+/chapters/*
+
+# Chapter one
+!chapters/chapter_one/
+chapters/chapter_one/*
+!chapters/chapter_one/*.tex
+
+# Chapter two + dependencies
+!chapters/chapter_two/
+chapters/chapter_two/*
+!chapters/chapter_two/*.tex
+!chapters/chapter_two/psiR.pdf
+
+# Chapter three
+!chapters/chapter_three/
+chapters/chapter_three/*
+!chapters/chapter_three/*.tex
