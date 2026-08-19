@@ -5,6 +5,8 @@
 # except tex files, .gitignore, 
 # bibliography and files that are included in main
 !*.gitignore
+!LICENSE.txt
+!README.md
 !lmc.cls
 
 # Main file and auxiliaries
