@@ -252,6 +252,18 @@
     {Sumário}
 }  
 
+% Change name of "Conteúdo" to "Table des metières" (FR)
+\addto\captionsfrench{
+  \renewcommand{\contentsname}
+    {Table des metières}
+}  
+
+% Change name of "Conteúdo" to "ìndice" (ESP)
+\addto\captionsspanish{
+  \renewcommand{\contentsname}
+    {Índice}
+}  
+
 % ======== HEADING/FOOTER SETUP ================
 % Pre-textual pagestyle
 \fancypagestyle{pretext}{
@@ -423,6 +435,10 @@
   \def\annexname{Anexo}%
 }
 
+\addto\captionsportuguese{%
+  \def\annexname{Anexo}%
+}
+
 \addto\captionsfrench{%
   \def\annexname{Annexe}%
 }
@@ -430,8 +446,6 @@
 \addto\captionsspanish{%
     \def\annexname{Anexo}%
 }
-
-
 
 % ======== SETUP OF PRE-TEXTUAL PARTS
 \newcommand{\beginpretext}{\pagestyle{pretext}}
